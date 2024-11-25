@@ -1,13 +1,11 @@
-import 'dart:convert';
-
-class QuranModel {
+class QuranPageModel {
   int? code;
   String? status;
   Data? data;
 
-  QuranModel({this.code, this.status, this.data});
+  QuranPageModel({this.code, this.status, this.data});
 
-  QuranModel.fromJson(Map<String, dynamic> json) {
+  QuranPageModel.fromJson(Map<String, dynamic> json) {
     code = json["code"];
     status = json["status"];
     data = json["data"] == null ? null : Data.fromJson(json["data"]);
@@ -25,23 +23,38 @@ class QuranModel {
 }
 
 class Data {
-  List<Surahs>? surahs;
+  int? number;
+  String? name;
+  String? englishName;
+  String? englishNameTranslation;
+  String? revelationType;
+  int? numberOfAyahs;
+  List<Ayahs>? ayahs;
   Edition? edition;
 
-  Data({this.surahs, this.edition});
+  Data({this.number, this.name, this.englishName, this.englishNameTranslation, this.revelationType, this.numberOfAyahs, this.ayahs, this.edition});
 
   Data.fromJson(Map<String, dynamic> json) {
-    surahs = json["surahs"] == null
-        ? null
-        : (json["surahs"] as List).map((e) => Surahs.fromJson(e)).toList();
-    edition =
-    json["edition"] == null ? null : Edition.fromJson(json["edition"]);
+    number = json["number"];
+    name = json["name"];
+    englishName = json["englishName"];
+    englishNameTranslation = json["englishNameTranslation"];
+    revelationType = json["revelationType"];
+    numberOfAyahs = json["numberOfAyahs"];
+    ayahs = json["ayahs"] == null ? null : (json["ayahs"] as List).map((e) => Ayahs.fromJson(e)).toList();
+    edition = json["edition"] == null ? null : Edition.fromJson(json["edition"]);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (surahs != null) {
-      data["surahs"] = surahs?.map((e) => e.toJson()).toList();
+    data["number"] = number;
+    data["name"] = name;
+    data["englishName"] = englishName;
+    data["englishNameTranslation"] = englishNameTranslation;
+    data["revelationType"] = revelationType;
+    data["numberOfAyahs"] = numberOfAyahs;
+    if (ayahs != null) {
+      data["ayahs"] = ayahs?.map((e) => e.toJson()).toList();
     }
     if (edition != null) {
       data["edition"] = edition?.toJson();
@@ -57,14 +70,9 @@ class Edition {
   String? englishName;
   String? format;
   String? type;
+  String? direction;
 
-  Edition(
-      {this.identifier,
-        this.language,
-        this.name,
-        this.englishName,
-        this.format,
-        this.type});
+  Edition({this.identifier, this.language, this.name, this.englishName, this.format, this.type, this.direction});
 
   Edition.fromJson(Map<String, dynamic> json) {
     identifier = json["identifier"];
@@ -73,6 +81,7 @@ class Edition {
     englishName = json["englishName"];
     format = json["format"];
     type = json["type"];
+    direction = json["direction"];
   }
 
   Map<String, dynamic> toJson() {
@@ -83,47 +92,7 @@ class Edition {
     data["englishName"] = englishName;
     data["format"] = format;
     data["type"] = type;
-    return data;
-  }
-}
-
-class Surahs {
-  int? number;
-  String? name;
-  String? englishName;
-  String? englishNameTranslation;
-  String? revelationType;
-  List<Ayahs>? ayahs;
-
-  Surahs(
-      {this.number,
-        this.name,
-        this.englishName,
-        this.englishNameTranslation,
-        this.revelationType,
-        this.ayahs});
-
-  Surahs.fromJson(Map<String, dynamic> json) {
-    number = json["number"];
-    name = json["name"];
-    englishName = json["englishName"];
-    englishNameTranslation = json["englishNameTranslation"];
-    revelationType = json["revelationType"];
-    ayahs = json["ayahs"] == null
-        ? null
-        : (json["ayahs"] as List).map((e) => Ayahs.fromJson(e)).toList();
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data["number"] = number;
-    data["name"] = name;
-    data["englishName"] = englishName;
-    data["englishNameTranslation"] = englishNameTranslation;
-    data["revelationType"] = revelationType;
-    if (ayahs != null) {
-      data["ayahs"] = ayahs?.map((e) => e.toJson()).toList();
-    }
+    data["direction"] = direction;
     return data;
   }
 }
@@ -139,16 +108,7 @@ class Ayahs {
   int? hizbQuarter;
   bool? sajda;
 
-  Ayahs(
-      {this.number,
-        this.text,
-        this.numberInSurah,
-        this.juz,
-        this.manzil,
-        this.page,
-        this.ruku,
-        this.hizbQuarter,
-        this.sajda});
+  Ayahs({this.number, this.text, this.numberInSurah, this.juz, this.manzil, this.page, this.ruku, this.hizbQuarter, this.sajda});
 
   Ayahs.fromJson(Map<String, dynamic> json) {
     number = json["number"];
@@ -159,7 +119,7 @@ class Ayahs {
     page = json["page"];
     ruku = json["ruku"];
     hizbQuarter = json["hizbQuarter"];
-    sajda = json["sajda"] is bool ? json["sajda"] : false; // Handle non-bool
+    sajda = (json["sajda"] is bool) ? json["sajda"] : null;
   }
 
   Map<String, dynamic> toJson() {

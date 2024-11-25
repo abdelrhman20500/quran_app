@@ -1,19 +1,18 @@
 import 'dart:convert';
-
 import 'package:http/http.dart';
-import 'package:quran_app/models/quran_model/quran_model.dart';
+import 'package:quran_app/models/surah_audio_model/surah_audio_model.dart';
 
 class ApiService{
-  static Future<QuranModel> getQuran()async{
-    Uri uri= Uri.parse("http://api.alquran.cloud/v1/quran");
+  static Future<SurahAudioModel> getSurahAudio()async{
+    Uri uri= Uri.parse("http://api.alquran.cloud/v1/quran/ar.alafasy");
     Response response = await get(uri);
     if (response.statusCode >= 200 && response.statusCode < 300){
       Map<String, dynamic> jsonDate = jsonDecode(response.body);
+      print("object");
       print(jsonDate);
-      QuranModel quranModel = QuranModel.fromJson(jsonDate);
-      return quranModel;
+      SurahAudioModel surahAudioModel = SurahAudioModel.fromJson(jsonDate);
+      return surahAudioModel;
     }else {
-      // Handle case where response body is empty
       throw Exception("Empty response body");
     }
   }

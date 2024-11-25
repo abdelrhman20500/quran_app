@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:quran_app/Api/api_service.dart';
-import 'package:quran_app/models/quran_model/quran_model.dart';
-import '../../../../widgets/build_list_of_surah.dart';
+import 'package:quran_app/widgets/all_surah/display_list_surah.dart';
+import '../../../../widgets/all_sajda/display_list_sajda.dart';
+import '../../../../widgets/all_juz/build_list_juz.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return const DefaultTabController(
       length: 3,
       child: Column(
         children: [
-          const TabBar(
+          TabBar(
             dividerColor: Colors.transparent,
             indicatorColor: Colors.blue,
             labelColor: Colors.black,
@@ -27,38 +27,9 @@ class HomeTab extends StatelessWidget {
           Expanded(
             child: TabBarView(
               children: [
-                FutureBuilder<QuranModel>(
-                  future: ApiService.getQuran(),
-                  builder: (BuildContext context, snapshot) {
-                    if (snapshot.hasError) {
-                      return Center(child: Text(snapshot.error.toString()));
-                    } else if (snapshot.hasData) {
-                      // Use the data received from the Future
-                      final quranModel = snapshot.data!;
-                      return ListView.builder(
-                        itemCount: quranModel.data?.surahs?.length,
-                        itemBuilder: (context, index) {
-                          // Pass the specific Surah to the BuildListOfSurah widget
-                          return BuildListOfSurah(surah: quranModel.data!.surahs![index]);
-                        },
-                      );
-                    } else {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                  },
-                ),
-                const Center(child: Text("222")),
-                GridView.builder(
-                  itemCount: 30, // Use the length of the decoded data
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 4,
-                    crossAxisSpacing: 4,
-                  ),
-                  itemBuilder: (context, index) {
-                    return BuildListOfJuz();
-                  },
-                ),
+                DisplayListSurah(),
+                DisplayListSajda(),
+                BuildListJuz(),
               ],
             ),
           ),
@@ -68,19 +39,5 @@ class HomeTab extends StatelessWidget {
   }
 }
 
-class BuildListOfJuz extends StatelessWidget {
-  const BuildListOfJuz({super.key,});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.tealAccent,
-      height: 60,
-      width: 60,
-      child: const Center(
-        child: Text("1", style: TextStyle(fontSize: 32)),
-      ),
-    );
-  }
-}
 

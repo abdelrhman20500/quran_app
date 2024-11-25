@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:quran_app/models/sajda_model/sajda_model.dart';
+import 'package:quran_app/ui/text_quran_page/text_quran_page.dart';
 
-import '../models/quran_model/quran_model.dart';
-import '../ui/display_image/display_image.dart';
 
-class BuildListOfSurah extends StatelessWidget {
-  const BuildListOfSurah({super.key, required this.surah});
+class BuildListOfSajda extends StatelessWidget {
+  const BuildListOfSajda({super.key, required this.ayahs});
 
-  final Surahs surah; // Change to Surahs
+  final Ayahs ayahs;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +16,9 @@ class BuildListOfSurah extends StatelessWidget {
         onTap: ()
         {
           Navigator.push(context, MaterialPageRoute(
-              builder: (context)=> DisplayImage(surahNumber: surah.number!,
-                surahs: surah,)));
+              builder: (context)=> TextQuranPage(
+                surahNumber: ayahs.surah!.number!,
+              )));
         },
         child: Column(
           children: [
@@ -26,7 +27,7 @@ class BuildListOfSurah extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: Colors.black,
                   child: Text(
-                    surah.number.toString(),
+                   ayahs.surah!.number!.toString(),
                     style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -35,17 +36,17 @@ class BuildListOfSurah extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start, // Align text to the start
                   children: [
                     Text(
-                      surah.englishName!, // Display the Surah name
+                      ayahs.surah!.englishName!, // Display the Surah name
                       style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      surah.revelationType!, // Display the English name
+                      ayahs.surah!.revelationType!, // Display the English name
                       style: const TextStyle(fontSize: 18),
                     ),
                   ],
                 ),
                 const Spacer(),
-                Text(surah.name!,
+                Text(ayahs.surah!.name!,
                   style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
                 ),
               ],

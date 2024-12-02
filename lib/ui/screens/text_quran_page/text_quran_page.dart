@@ -56,7 +56,6 @@ class SurahText extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
@@ -79,7 +78,7 @@ class SurahText extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: const Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back, color: Color(0xff14213D),),
                 padding: EdgeInsets.zero, // Remove default padding of IconButton
               ),
             ),
@@ -89,18 +88,19 @@ class SurahText extends StatelessWidget {
         title: Text(
           quranPageModel.data!.name!,
           style: const TextStyle(
-            fontSize: 24,
+            fontSize: 26,
             fontWeight: FontWeight.bold,
-            color: Colors.blue,
+            color: Colors.white,
           ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        padding: const EdgeInsets.all(12.0),
         child: Text(
           completeText,
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 16),
+          style: const TextStyle(color: Color(0xff14213D),
+              fontSize: 20, fontWeight: FontWeight.w500),
         ),
       ),
     );

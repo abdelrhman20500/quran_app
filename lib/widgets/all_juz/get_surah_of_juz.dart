@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_app/bloc/cubits/juz_cubit.dart';
 import 'package:quran_app/bloc/states/juz_state.dart';
 import 'package:quran_app/models/juz_model/get_juz.dart';
-import '../../ui/text_quran_page/text_quran_page.dart';
+
+import '../../ui/screens/text_quran_page/text_quran_page.dart';
 
 class GetSurahOfJuz extends StatelessWidget {
   const GetSurahOfJuz({super.key, required this.numberOfJuz});
@@ -43,7 +44,8 @@ class GetSurahOfJuz extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        title: const Text('Surahs in Juz'),
+        title: const Text('Surahs in Juz',style: TextStyle(color: Colors.white,
+        fontSize: 24, fontWeight: FontWeight.w600),),
       ),
       body: BlocProvider(
         create: (context) => JuzCubit()..getJuz(numberOfJuz),
@@ -115,10 +117,11 @@ class NewWidget extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundColor: Colors.black,
+                  radius: 22,
+                  backgroundColor: const Color(0xff14213D),
                   child: Text(
                     ayahs.surah!.number!.toString(),
-                    style: const TextStyle(
+                    style: const TextStyle(fontSize: 22,
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -128,25 +131,25 @@ class NewWidget extends StatelessWidget {
                   children: [
                     Text(
                       ayahs.surah!.englishName!,
-                      style: const TextStyle(
+                      style: const TextStyle(color: Color(0xff14213D),
                           fontSize: 22, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       ayahs.surah!.revelationType!,
-                      style: const TextStyle(fontSize: 18),
+                      style: const TextStyle(color:Color(0xff14213D), fontSize: 18),
                     ),
                   ],
                 ),
                 const Spacer(),
                 Text(
                   ayahs.surah!.name!,
-                  style: const TextStyle(
-                      fontSize: 22, fontWeight: FontWeight.w500),
+                  style: const TextStyle(color: Color(0xff14213D),
+                      fontSize: 22, fontWeight: FontWeight.w600),
                 ),
               ],
             ),
             const Divider(
-              color: Colors.grey,
+              color: Color(0xff14213D),
               thickness: 1,
             ),
           ],

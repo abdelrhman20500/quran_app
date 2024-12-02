@@ -95,65 +95,58 @@ class _SurahSoundState extends State<SurahSound> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/audioGround.jpg"),
-            fit: BoxFit.fill,)),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: surahAudioModel == null
-            ? const Center(child: CircularProgressIndicator())
-            : Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.33,
-                width: MediaQuery.of(context).size.width * 0.9,
-                decoration: BoxDecoration(
-                    color: Colors.orangeAccent.withOpacity(0.4),
-                    borderRadius: BorderRadius.circular(22)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      surahAudioModel!.data!.surahs![currentSurahIndex].name!,
-                      style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 8),
-                    Text("Total Ayah: ${surahAudioModel!.data!.surahs![currentSurahIndex].ayahs!.length}",
-                        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        IconButton(
-                            onPressed: _previousSurah,
-                            icon: const Icon(Icons.skip_previous, size: 52)),
-                        IconButton(
-                            onPressed: () async {
-                              if (isPlaying) {
-                                await _pauseAudio();
-                              } else {
-                                await _playAudio();
-                              }
-                            },
-                            icon: Icon(
-                              isPlaying ? Icons.pause_circle : Icons.play_circle,
-                              size: 52,
-                            )),
-                        IconButton(
-                            onPressed: _nextSurah,
-                            icon: const Icon(Icons.skip_next, size: 52)),
-                      ],
-                    ),
-                  ],
-                ),
+    return Scaffold(
+      body: surahAudioModel == null
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.3,
+              width: MediaQuery.of(context).size.width * 0.9,
+              decoration: BoxDecoration(
+                  color: const Color(0xff14213D),
+                  borderRadius: BorderRadius.circular(22)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    surahAudioModel!.data!.surahs![currentSurahIndex].name!,
+                    style: const TextStyle(color: Colors.white,fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  Text("Total Ayah: ${surahAudioModel!.data!.surahs![currentSurahIndex].ayahs!.length}",
+                      style: const TextStyle(color: Colors.white ,fontSize: 22, fontWeight: FontWeight.w600)),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                          onPressed: _previousSurah,
+                          icon: const Icon(Icons.skip_previous,color: Colors.white , size: 52)),
+                      IconButton(
+                          onPressed: () async {
+                            if (isPlaying) {
+                              await _pauseAudio();
+                            } else {
+                              await _playAudio();
+                            }
+                          },
+                          icon: Icon(
+                            isPlaying ? Icons.pause_circle : Icons.play_circle,
+                            size: 52,color: Colors.white ,
+                          )),
+                      IconButton(
+                          onPressed: _nextSurah,
+                          icon: const Icon(Icons.skip_next,color: Colors.white , size: 52)),
+                    ],
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quran_app/models/sajda_model/sajda_model.dart';
-import 'package:quran_app/ui/text_quran_page/text_quran_page.dart';
+import '../../ui/screens/text_quran_page/text_quran_page.dart';
 
 
 class BuildListOfSajda extends StatelessWidget {
@@ -37,22 +37,22 @@ class BuildListOfSajda extends StatelessWidget {
                   children: [
                     Text(
                       ayahs.surah!.englishName!, // Display the Surah name
-                      style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                      style: const TextStyle(color: Color(0xff14213D),fontSize: 22, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       ayahs.surah!.revelationType!, // Display the English name
-                      style: const TextStyle(fontSize: 18),
+                      style: const TextStyle(color: Color(0xff14213D),fontSize: 18),
                     ),
                   ],
                 ),
                 const Spacer(),
                 Text(ayahs.surah!.name!,
-                  style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                  style: const TextStyle(color: Color(0xff14213D),fontSize: 22, fontWeight: FontWeight.w600),
                 ),
               ],
             ),
             const Divider(
-              color: Colors.grey,
+              color: Color(0xff14213D),
               thickness: 1,
             ),
           ],

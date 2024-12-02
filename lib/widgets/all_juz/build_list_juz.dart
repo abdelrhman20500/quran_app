@@ -38,13 +38,14 @@ class BuildListJuz extends StatelessWidget {
               height: 60,
               width: 60,
               decoration: BoxDecoration(
-                  color: Colors.tealAccent,
+                  color: const Color(0xff14213D),
                   borderRadius: BorderRadius.circular(22)
               ),
               child: Center(
                 child: Text(
                   numOfJuz[index].number.toString(), // Display the number
-                  style: const TextStyle(fontSize: 32),
+                  style: const TextStyle(color: Colors.white,
+                      fontSize: 32, fontWeight: FontWeight.bold),
                 ),
               ),
             ),

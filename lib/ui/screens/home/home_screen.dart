@@ -17,9 +17,9 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentIndex=0;
   List<Widget> tabs=
   [
-    HomeTab(),
-    AudioTab(),
-    SettingsTab(),
+    const HomeTab(),
+    const AudioTab(),
+    const SettingsTab(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -27,12 +27,12 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: const Icon(Icons.menu, size: 32, color: Colors.black,),
-        title: const Text("Al_Quran", style: TextStyle(color: Colors.black, fontSize: 26, fontWeight: FontWeight.bold),),
+        leading: const Icon(Icons.menu, size: 32, color: Color(0xff14213D),),
+        title: const Text("Al_Quran", style: TextStyle(color: Color(0xff14213D), fontSize: 26, fontWeight: FontWeight.bold),),
         centerTitle: true,
       ),
       bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.blue,
+          selectedItemColor: Colors.white,
           unselectedItemColor: Colors.grey,
           currentIndex: currentIndex,
           onTap: (index){

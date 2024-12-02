@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quran_app/ui/screens/home/home_screen.dart';
 import 'package:quran_app/ui/screens/splash/splash_screen.dart';
+import 'package:quran_app/ui/utils/app_theme.dart';
 
 void main() {
   print("#######");
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: AppTheme.appTheme,
       debugShowCheckedModeBanner: false,
       routes: {
         SplashScreen.routeName:(_)=>SplashScreen(),
@@ -23,18 +25,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-// ListView.builder(
-//   itemCount: surahs.ayahs!.length,
-//   itemBuilder: (context, index) {
-//     final ayah = surahs.ayahs![index];
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(horizontal: 12.0),
-//       child: Text('${ayah.text!.trim()}(${ayah.numberInSurah})',
-//         textAlign: TextAlign.center,
-//         style: const TextStyle(fontSize: 16),
-//       ),
-//     );
-//   },
-// ),

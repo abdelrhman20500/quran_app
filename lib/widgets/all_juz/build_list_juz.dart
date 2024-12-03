@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quran_app/widgets/all_juz/get_surah_of_juz.dart';
+import 'package:quran_app/widgets/all_juz/list_surah_of_juz.dart';
 import '../../models/juz_model/num_of_juz.dart'; // Ensure this path is correct
 
 class BuildListJuz extends StatelessWidget {
@@ -28,7 +28,7 @@ class BuildListJuz extends StatelessWidget {
         return InkWell(
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder:
-            (context)=>GetSurahOfJuz(numberOfJuz: numOfJuz[index].number!)));
+            (context)=>ListSurahOfJuz(numberOfJuz: numOfJuz[index].number!)));
             // Print the number of the tapped item
             print('Tapped on Juz number: ${numOfJuz[index].number}');
           },

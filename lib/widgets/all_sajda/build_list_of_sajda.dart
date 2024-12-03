@@ -25,10 +25,11 @@ class BuildListOfSajda extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundColor: Colors.black,
+                  radius: 24,
+                  backgroundColor: const Color(0xff14213D),
                   child: Text(
                    ayahs.surah!.number!.toString(),
-                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    style: const TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(width: MediaQuery.of(context).size.width * 0.1),

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:quran_app/bloc/cubits/juz_cubit.dart';
 import 'package:quran_app/bloc/states/juz_state.dart';
 import 'package:quran_app/models/juz_model/get_juz.dart';
+import 'juz_surahs.dart';
 
-import '../../ui/screens/text_quran_page/text_quran_page.dart';
-
-class GetSurahOfJuz extends StatelessWidget {
-  const GetSurahOfJuz({super.key, required this.numberOfJuz});
+class ListSurahOfJuz extends StatelessWidget {
+  const ListSurahOfJuz({super.key, required this.numberOfJuz});
 
   final int numberOfJuz;
 
@@ -44,8 +44,10 @@ class GetSurahOfJuz extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        title: const Text('Surahs in Juz',style: TextStyle(color: Colors.white,
-        fontSize: 24, fontWeight: FontWeight.w600),),
+        title: const Text(
+          'Surahs in Juz',
+          style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w600),
+        ),
       ),
       body: BlocProvider(
         create: (context) => JuzCubit()..getJuz(numberOfJuz),
@@ -59,12 +61,18 @@ class GetSurahOfJuz extends StatelessWidget {
           },
           builder: (context, state) {
             if (state is LoadingJuzState) {
-              return const Center(child: CircularProgressIndicator());
+              return Center(
+                child: LoadingAnimationWidget.inkDrop(
+                  color: const Color(0xff14213D),
+                  size: 75,
+                ),
+              );
             } else if (state is SuccessJuzState) {
               return buildListView(state.juzModel.data!.ayahs!);
-            } else {
+            } else if (state is ErrorJuzState) {
               return const Center(child: Text("Error loading Juz data."));
             }
+            return const Center(child: CircularProgressIndicator());
           },
         ),
       ),
@@ -90,7 +98,7 @@ class GetSurahOfJuz extends StatelessWidget {
     return ListView.builder(
       itemCount: filteredAyahs.length,
       itemBuilder: (BuildContext context, int index) {
-        return NewWidget(
+        return JuzSurahs(
           ayahs: filteredAyahs[index],
         );
       },
@@ -98,63 +106,3 @@ class GetSurahOfJuz extends StatelessWidget {
   }
 }
 
-
-class NewWidget extends StatelessWidget {
-  const NewWidget({super.key, required this.ayahs,});
-  final Ayahs ayahs;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: InkWell(
-        onTap: () {
-         Navigator.push(context, MaterialPageRoute(
-             builder: (context)=>TextQuranPage(surahNumber: ayahs.surah!.number!)));
-        },
-        child: Column(
-          children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  radius: 22,
-                  backgroundColor: const Color(0xff14213D),
-                  child: Text(
-                    ayahs.surah!.number!.toString(),
-                    style: const TextStyle(fontSize: 22,
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                SizedBox(width: MediaQuery.of(context).size.width * 0.1),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      ayahs.surah!.englishName!,
-                      style: const TextStyle(color: Color(0xff14213D),
-                          fontSize: 22, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      ayahs.surah!.revelationType!,
-                      style: const TextStyle(color:Color(0xff14213D), fontSize: 18),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                Text(
-                  ayahs.surah!.name!,
-                  style: const TextStyle(color: Color(0xff14213D),
-                      fontSize: 22, fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
-            const Divider(
-              color: Color(0xff14213D),
-              thickness: 1,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

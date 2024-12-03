@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:quran_app/bloc/cubits/all_surah_cubit.dart';
 import 'package:quran_app/bloc/states/all_surah_state.dart';
 import '../../../../widgets/audio/all_surah_audio.dart';
@@ -22,7 +23,12 @@ class AudioTab extends StatelessWidget {
           },
           builder: (BuildContext context, AllSurahState state) {
             if (state is LoadingAllSurah) {
-              return const Center(child: CircularProgressIndicator());
+              return Center(
+                child: LoadingAnimationWidget.staggeredDotsWave(
+                  color: const Color(0xff14213D),
+                  size: 120,
+                ),
+              );
             } else if (state is SuccessAllSurah) {
               return ListView.builder(
                 itemCount: state.allSurahModel.data!.length,
@@ -30,13 +36,13 @@ class AudioTab extends StatelessWidget {
                   return AllSurahAudio(data: state.allSurahModel.data![index]);
                 },
               );
-            } else {
+            } else if (state is ErrorAllSurah) {
               return const Center(child: Text("Error loading Surah data."));
             }
+            return const Center(child: CircularProgressIndicator());
           },
         ),
       ),
     );
   }
 }
-

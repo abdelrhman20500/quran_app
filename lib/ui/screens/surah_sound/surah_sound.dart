@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:quran_app/Api/api_service.dart';
 import 'package:quran_app/models/surah_audio_model/surah_audio_model.dart';
 
@@ -97,7 +98,11 @@ class _SurahSoundState extends State<SurahSound> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: surahAudioModel == null
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(
+            child: LoadingAnimationWidget.staggeredDotsWave(
+            color: const Color(0xff14213D),
+            size: 120),
+          )
           : Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

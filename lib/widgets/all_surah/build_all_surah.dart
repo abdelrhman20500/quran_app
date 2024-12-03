@@ -30,7 +30,7 @@ class BuildAllSurah extends StatelessWidget {
                   backgroundColor: const Color(0xff14213D),
                   child: Text(
                     data.number!.toString(),
-                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    style: const TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(width: MediaQuery.of(context).size.width * 0.1),

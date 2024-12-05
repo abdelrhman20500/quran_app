@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../models/all_surah_model/all_surah_model.dart';
 import '../../ui/screens/surah_sound/surah_sound.dart';
 

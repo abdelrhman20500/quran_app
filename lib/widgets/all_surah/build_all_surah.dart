@@ -6,7 +6,7 @@ import '../../ui/screens/text_quran_page/text_quran_page.dart';
 class BuildAllSurah extends StatelessWidget {
   const BuildAllSurah({super.key, required this.data});
 
-  final Data data; // Change to Surahs
+  final Data data;
 
   @override
   Widget build(BuildContext context) {

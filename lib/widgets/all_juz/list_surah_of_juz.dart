@@ -4,6 +4,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:quran_app/bloc/cubits/juz_cubit.dart';
 import 'package:quran_app/bloc/states/juz_state.dart';
 import 'package:quran_app/models/juz_model/get_juz.dart';
+
 import 'juz_surahs.dart';
 
 class ListSurahOfJuz extends StatelessWidget {

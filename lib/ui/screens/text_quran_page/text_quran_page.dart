@@ -95,13 +95,15 @@ class SurahText extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Text(
-          completeText,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Color(0xff14213D),
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
+        child: SingleChildScrollView(
+          child: Text(
+            completeText,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Color(0xff14213D),
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
       ),

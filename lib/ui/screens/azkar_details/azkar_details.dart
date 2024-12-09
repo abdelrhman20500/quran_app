@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:quran_app/models/azkar_details_model.dart';
+import 'package:quran_app/models/azkar/azkar_details_model.dart';
+
+import '../../../widgets/Azkar/build_azkar_details.dart';
 
 class AzkarDetails extends StatefulWidget {
   const AzkarDetails({super.key, required this.id, required this.title});
@@ -39,7 +41,7 @@ class _AzkarDetailsState extends State<AzkarDetails> {
         child: ListView.separated(
           physics: const BouncingScrollPhysics(),
           itemCount: azkarDetails.length,
-          separatorBuilder: (context, index)=>const Divider(color: Colors.black,thickness: 2,),
+          separatorBuilder: (context, index)=>const Divider(color: Color(0xff1D2038),thickness: 1,),
             itemBuilder: (context,index)
           {
             return BuildAzkarDetails(model: azkarDetails[index],);
@@ -70,22 +72,3 @@ class _AzkarDetailsState extends State<AzkarDetails> {
   }
 }
 
-class BuildAzkarDetails extends StatelessWidget {
-  const BuildAzkarDetails({super.key, required this.model,});
-
-  final AzkarDetailsModel model;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      child: ListTile(
-        title: Text(model.reference!, textDirection: TextDirection.rtl,style: const TextStyle(
-          fontSize: 22, fontWeight: FontWeight.bold,
-        ),),
-        subtitle: Text(model.content!, textDirection: TextDirection.rtl,style: const TextStyle(
-          fontSize: 20, fontWeight: FontWeight.w600,
-        )),
-      ),
-    );
-  }
-}

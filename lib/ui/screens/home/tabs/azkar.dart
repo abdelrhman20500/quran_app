@@ -1,8 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:quran_app/models/azkar.dart';
-import 'package:quran_app/ui/screens/azkar_details/azkar_details.dart';
+import 'package:quran_app/models/azkar/azkar.dart';
+import '../../../../widgets/Azkar/build_azkar_item.dart';
 
 class AzkarTab extends StatefulWidget {
    const AzkarTab({super.key});
@@ -52,30 +51,3 @@ class _AzkarTabState extends State<AzkarTab> {
   }
 }
 
-class BuildAzkarItem extends StatelessWidget {
-  const BuildAzkarItem({super.key, required this.model,});
-
-  final AzkarModel model;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: ()
-      {
-        Navigator.push(context, MaterialPageRoute(
-            builder: (context)=>AzkarDetails(id: model.id!, title: model.name!,)));
-        print(model.id);
-      },
-      child: Container(
-        height: MediaQuery.of(context).size.height*0.12,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(22),
-            color: const Color(0xff1D2038),
-        ),
-        child: Center(child: Text(model.name!, style: const TextStyle(
-            color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),)),
-      ),
-    );
-  }
-}

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../models/juz_model/get_juz.dart';
 import '../../ui/screens/text_quran_page/text_quran_page.dart';
 

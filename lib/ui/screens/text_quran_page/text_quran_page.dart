@@ -16,26 +16,23 @@ class TextQuranPage extends StatelessWidget {
       create: (context) => SurahPageCubit()..getQuranPage(surahNumber),
       child: BlocConsumer<SurahPageCubit, SurahPageState>(
         listener: (context, state) {
-          if (state is ErrorSurahPage) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.errMessage)),
-            );
-          }
+          // if (state is ErrorSurahPage) {
+          //   ScaffoldMessenger.of(context).showSnackBar(
+          //     SnackBar(content: Text(state.errMessage)),
+          //   );
+          // }
         },
         builder: (context, state) {
-          if (state is LoadingSurahPage) {
-            return Center(
-              child: LoadingAnimationWidget.inkDrop(
-                color: const Color(0xff14213D),
-                size: 75,
-              ),
-            );
-          } else if (state is SuccessSurahPage) {
+          if (state is SuccessSurahPage) {
             return SurahText(quranPageModel: state.quranPageModel);
-          } else if (state is ErrorSurahPage) {
+          }else if (state is ErrorSurahPage) {
             return const Center(child: Text("Error loading Surah page."));
-          }
-          return const Center(child: CircularProgressIndicator());
+          }return Center(
+            child: LoadingAnimationWidget.inkDrop(
+              color: const Color(0xff14213D),
+              size: 75,
+            ),
+          );
         },
       ),
     );

@@ -47,7 +47,7 @@ class _SurahSoundState extends State<SurahSound> {
   String _generateCompleteText() {
     String text = '';
     for (var ayah in surahAudioModel!.data!.surahs![currentSurahIndex].ayahs!) {
-      text += ayah.text! + ' ';
+      text += '${ayah.text!} ';
     }
     return text;
   }
@@ -97,11 +97,48 @@ class _SurahSoundState extends State<SurahSound> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                  offset: const Offset(0, 7),
+                ),
+              ],
+            ),
+            child: CircleAvatar(
+              radius: 18,
+              backgroundColor: Colors.white,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.arrow_back, color: Color(0xff14213D)),
+                padding: EdgeInsets.zero,
+              ),
+            ),
+          ),
+        ),
+      ),
       body: surahAudioModel == null
           ? Center(
-            child: LoadingAnimationWidget.staggeredDotsWave(
-            color: const Color(0xff14213D),
-            size: 120),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                LoadingAnimationWidget.staggeredDotsWave(
+                    color: const Color(0xff14213D),
+                    size: 120),
+                const Text("Please Wait", style:
+                TextStyle(fontSize: 18,fontWeight: FontWeight.bold, color: Color(0xff14213D)),)
+              ],
+            ),
           )
           : Column(
         mainAxisAlignment: MainAxisAlignment.center,

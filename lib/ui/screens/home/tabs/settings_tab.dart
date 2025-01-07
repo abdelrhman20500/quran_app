@@ -5,143 +5,79 @@ class SettingsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.yellow,);
+    return  Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 32.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+            height: 84,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                color: const Color(0xff14213D),
+                borderRadius: BorderRadius.circular(22)
+            ),
+            child:  const Padding(
+              padding: EdgeInsets.all(12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Image(image: AssetImage("assets/images/quran_audio_logo.png"),
+                    fit: BoxFit.fill,height: 50, width: 50,),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("AbdElrhman", style: TextStyle(color: Colors.white),),
+                      Text("abdelrhman@gmail.com", style: TextStyle(color: Colors.white, fontSize: 20),),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height*0.04,),
+          ItemRowProfile(onTap: (){},iconData:Icons.share, text: "Invite to App"),
+          SizedBox(height: MediaQuery.of(context).size.height*0.04,),
+          ItemRowProfile(onTap: (){},iconData: Icons.language_outlined, text:"Language"),
+          SizedBox(height: MediaQuery.of(context).size.height*0.04,),
+          ItemRowProfile(onTap: (){},iconData:Icons.dark_mode_outlined,text: "Dark mode"),
+          SizedBox(height: MediaQuery.of(context).size.height*0.04,),
+          ItemRowProfile(onTap: (){},iconData: Icons.settings, text: "Settings"),
+          SizedBox(height: MediaQuery.of(context).size.height*0.04,),
+          ItemRowProfile(onTap: (){},iconData: Icons.logout, text:"Logout"),
+
+        ],
+      ),
+    );
   }
 }
-// class AudioTab extends StatelessWidget {
-//   const AudioTab({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return FutureBuilder<SurahAudioModel>(
-//       future: ApiService.getSurahAudio(),
-//       builder: (BuildContext context, snapshot) {
-//         if (snapshot.hasError) {
-//           return Center(child: Text(snapshot.error.toString()));
-//         } else if (snapshot.hasData) {
-//           final audio = snapshot.data;
-//           return NewWidget(surahAudioModel: audio!);
-//         } else {
-//           return const Center(child: CircularProgressIndicator());
-//         }
-//       },
-//     );
-//   }
-// }
-//
-// class NewWidget extends StatefulWidget {
-//   const NewWidget({super.key, required this.surahAudioModel});
-//   final SurahAudioModel surahAudioModel;
-//
-//   @override
-//   _NewWidgetState createState() => _NewWidgetState();
-// }
-//
-// class _NewWidgetState extends State<NewWidget> {
-//   final AudioPlayer _audioPlayer = AudioPlayer();
-//   bool isPlaying = false;
-//   int currentSurahIndex = 0;
-//   int currentAyahIndex = 0;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _audioPlayer.onPlayerComplete.listen((event) {
-//       if (currentAyahIndex < widget.surahAudioModel.data!.surahs![currentSurahIndex].ayahs!.length - 1) {
-//         setState(() {
-//           currentAyahIndex++;
-//           _playAudio();
-//         });
-//       }
-//     });
-//   }
-//
-//   Future<void> _playAudio() async {
-//     await _audioPlayer.play(UrlSource(widget.surahAudioModel.data!.surahs![currentSurahIndex].ayahs![currentAyahIndex].audio!));
-//     setState(() {
-//       isPlaying = true;
-//     });
-//   }
-//
-//   Future<void> _pauseAudio() async {
-//     await _audioPlayer.pause();
-//     setState(() {
-//       isPlaying = false;
-//     });
-//   }
-//
-//   void _previousSurah() {
-//     if (currentSurahIndex > 0) {
-//       setState(() {
-//         currentSurahIndex--;
-//         currentAyahIndex = 0; // Reset to the first Ayah of the previous Surah
-//         _playAudio();
-//       });
-//     }
-//   }
-//
-//   void _nextSurah() {
-//     if (currentSurahIndex < widget.surahAudioModel.data!.surahs!.length - 1) {
-//       setState(() {
-//         currentSurahIndex++;
-//         currentAyahIndex = 0; // Reset to the first Ayah of the next Surah
-//         _playAudio();
-//       });
-//     }
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         Text(
-//           widget.surahAudioModel.data!.surahs![currentSurahIndex].name!,
-//           style: const TextStyle(fontSize: 32),
-//         ),
-//         Row(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             IconButton(
-//               onPressed: _previousSurah,
-//               icon: const Icon(Icons.skip_previous, size: 52),
-//             ),
-//             IconButton(
-//               onPressed: () async {
-//                 if (isPlaying) {
-//                   await _pauseAudio();
-//                 } else {
-//                   await _playAudio();
-//                 }
-//               },
-//               icon: Icon(
-//                 isPlaying ? Icons.pause_circle : Icons.play_circle,
-//                 size: 52,
-//               ),
-//             ),
-//             IconButton(
-//               onPressed: _nextSurah,
-//               icon: const Icon(Icons.skip_next, size: 52),
-//             ),
-//             IconButton(
-//               onPressed: () {},
-//               icon: const Icon(Icons.volume_up, size: 52),
-//             ),
-//             TextButton(
-//               onPressed: () {},
-//               child: const Text(
-//                 "1.0 x",
-//                 style: TextStyle(fontSize: 22),
-//               ),
-//             ),
-//           ],
-//         ),
-//       ],
-//     );
-//   }
-//
-//   @override
-//   void dispose() {
-//     _audioPlayer.dispose();
-//     super.dispose();
-//   }
-// }
+
+class ItemRowProfile extends StatelessWidget {
+  const ItemRowProfile({super.key,required this.iconData, required this.text,required this.onTap});
+
+  final IconData iconData;
+  final String text;
+  final void Function()? onTap;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Icon(iconData, color: const Color(0xff14213D),size: 36,),
+              SizedBox(width: MediaQuery.of(context).size.width*0.07,),
+              Text(text, style :const TextStyle(fontSize: 24,
+                  fontWeight: FontWeight.w500,color: Colors.black),),
+            ],
+          ),
+          const Divider(color: Color(0xff14213D),
+            thickness: 2,
+          )
+        ],
+      ),
+    );
+  }
+}

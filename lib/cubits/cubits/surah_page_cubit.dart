@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:quran_app/models/quran_page/quran_page_model.dart';
-import 'package:quran_app/bloc/states/surah_page_state.dart';
+import '../states/surah_page_state.dart';
 
 class SurahPageCubit extends Cubit<SurahPageState> {
   SurahPageCubit() : super(InitialSurahPage());

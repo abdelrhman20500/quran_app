@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:quran_app/bloc/cubits/all_surah_cubit.dart';
-import 'package:quran_app/bloc/states/all_surah_state.dart';
+import '../../../../cubits/cubits/all_surah_cubit.dart';
+import '../../../../cubits/states/all_surah_state.dart';
 import '../../../../widgets/audio/all_surah_audio.dart';
 
 class AudioTab extends StatelessWidget {

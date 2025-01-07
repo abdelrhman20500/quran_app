@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:quran_app/models/sajda_model/sajda_model.dart';
-import 'package:quran_app/bloc/states/sajda_state.dart';
+import '../states/sajda_state.dart';
 
 class SajdaCubit extends Cubit<SajdaState> {
   SajdaCubit() : super(InitialSajdaState());

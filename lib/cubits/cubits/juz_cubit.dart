@@ -1,9 +1,8 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:quran_app/models/juz_model/get_juz.dart';
-import 'package:quran_app/bloc/states/juz_state.dart';
+import '../states/juz_state.dart';
 
 class JuzCubit extends Cubit<JuzState> {
   JuzCubit() : super(InitialJuzState());

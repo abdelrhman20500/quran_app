@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:quran_app/bloc/cubits/surah_page_cubit.dart';
-import 'package:quran_app/bloc/states/surah_page_state.dart';
 import 'package:quran_app/models/quran_page/quran_page_model.dart';
+
+import '../../../cubits/cubits/surah_page_cubit.dart';
+import '../../../cubits/states/surah_page_state.dart';
 
 class TextQuranPage extends StatelessWidget {
   const TextQuranPage({super.key, required this.surahNumber});
@@ -14,14 +15,7 @@ class TextQuranPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SurahPageCubit()..getQuranPage(surahNumber),
-      child: BlocConsumer<SurahPageCubit, SurahPageState>(
-        listener: (context, state) {
-          // if (state is ErrorSurahPage) {
-          //   ScaffoldMessenger.of(context).showSnackBar(
-          //     SnackBar(content: Text(state.errMessage)),
-          //   );
-          // }
-        },
+      child: BlocBuilder<SurahPageCubit, SurahPageState>(
         builder: (context, state) {
           if (state is SuccessSurahPage) {
             return SurahText(quranPageModel: state.quranPageModel);

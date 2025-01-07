@@ -1,10 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
-import 'package:quran_app/bloc/states/all_surah_state.dart';
-
 import '../../models/all_surah_model/all_surah_model.dart';
+import '../states/all_surah_state.dart';
 
 class AllSurahCubit extends Cubit<AllSurahState> {
   AllSurahCubit() : super(InitialAllSurah());

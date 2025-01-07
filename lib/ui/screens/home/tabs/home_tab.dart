@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quran_app/widgets/all_surah/display_list_surah.dart';
-import '../../../../widgets/all_sajda/display_list_sajda.dart';
-import '../../../../widgets/all_juz/build_list_juz.dart';
+import 'package:quran_app/widgets/all_juz/build_list_of_juz.dart';
+import 'package:quran_app/widgets/all_surah/list_of_surah.dart';
+import '../../../../widgets/all_sujda/display_list_sujda.dart';
 import '../../../../widgets/tab_bar_item/tab_bar_tem.dart';
 
 class HomeTab extends StatelessWidget {
@@ -28,7 +28,7 @@ class HomeTab extends StatelessWidget {
           Expanded(
             child: TabBarView(
               children: [
-                DisplayListSurah(),
+               ListOfSurah(),
                 DisplayListSajda(),
                 BuildListJuz(),
               ],

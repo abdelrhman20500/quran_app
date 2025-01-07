@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:quran_app/bloc/cubits/juz_cubit.dart';
-import 'package:quran_app/bloc/states/juz_state.dart';
 import 'package:quran_app/models/juz_model/get_juz.dart';
-
-import 'juz_surahs.dart';
+import '../../cubits/cubits/juz_cubit.dart';
+import '../../cubits/states/juz_state.dart';
+import 'juz_surah.dart';
 
 class ListSurahOfJuz extends StatelessWidget {
   const ListSurahOfJuz({super.key, required this.numberOfJuz});
@@ -106,4 +105,3 @@ class ListSurahOfJuz extends StatelessWidget {
     );
   }
 }
-

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         SplashScreen.routeName:(_)=>const SplashScreen(),
-        HomeScreen.routeName:(_)=>const HomeScreen()
+        HomeScreen.routeName:(_)=>const HomeScreen(),
       },
       initialRoute: HomeScreen.routeName,
     );
